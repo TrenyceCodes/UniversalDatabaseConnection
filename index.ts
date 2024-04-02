@@ -1,5 +1,12 @@
-export function add(a: number, b: number): number {
-    return a + b;
-}
+import { SupportedDatabases, mySqlDatabaseConfiguration } from "./data-access/configurations/database-configurations"
+import { createSqlConnection } from "./data-access/connections/database-connections";
 
-console.log(add(3,5));
+export async function UniversalDatabaseConnection(chosenDatabase: string, databaseConfigurations: mySqlDatabaseConfiguration): Promise<any> {
+    switch (chosenDatabase) {
+        case SupportedDatabases.Sql:
+            return await createSqlConnection(databaseConfigurations);
+            break;
+        default:
+            throw new Error(`Unsupported databases ${chosenDatabase}`);
+    }
+}

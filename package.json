@@ -9,9 +9,9 @@
     "dist"
   ],
   "scripts": {
-      "build": "tsup",
-      "test": "jest"
-    },
+    "build": "tsup",
+    "test": "jest"
+  },
   "author": "TreNyceCodes",
   "license": "ISC",
   "devDependencies": {
@@ -22,5 +22,8 @@
     "ts-node": "^10.9.2",
     "tsup": "^8.0.2",
     "typescript": "^5.4.3"
+  },
+  "dependencies": {
+    "mysql2": "^3.9.3"
   }
 }
