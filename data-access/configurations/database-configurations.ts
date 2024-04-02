@@ -5,6 +5,16 @@ export interface mySqlDatabaseConfiguration {
     databaseName: string,
 }
 
+export interface firebaseDatabaseConfiguration {
+    apiKey: string,
+    authDomain: string,
+    projectId: string,
+    storageBucket: string,
+    messagingSenderId: string,
+    appId: string,
+    measurementId: string
+}
+
 // this holds all the database types(postgres, sql, firebase)
 export enum SupportedDatabases {
     Sql = "sql",
