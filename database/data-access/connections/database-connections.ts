@@ -15,8 +15,9 @@ export async function createSqlConnection(mysqlConnection: mySqlDatabaseConfigur
     });
 
     try {
-        await sqlConnection.connect();
-        console.log("Sql Database Connected");
+        return await sqlConnection.connect(() => {
+            console.log("Sql Database Connected");
+        });
     } catch (error) {
         throw new Error("Sql database connection error" + error);
     }

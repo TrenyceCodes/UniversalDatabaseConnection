@@ -12,3 +12,13 @@ export async function UniversalDatabaseConnection(chosenDatabase: string, databa
             throw new Error(`Unsupported databases ${chosenDatabase}`);
     }
 }
+
+const databaseConfiguration: mySqlDatabaseConfiguration = {
+    host: "localhost",
+    user: "root",
+    password: "password",
+    databaseName: "TaskifyDB"
+}
+
+const connection = UniversalDatabaseConnection(SupportedDatabases.Sql, databaseConfiguration);
+console.log(connection);
