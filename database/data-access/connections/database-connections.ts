@@ -14,9 +14,15 @@ export async function createSqlConnection(mysqlConnection: mySqlDatabaseConfigur
         database: mysqlConnection.databaseName
     });
 
-    await sqlConnection.connect();
+    try {
+        if (sqlConnection) {
+            await sqlConnection.connect();
+            return console.log("Sql connection is working");
+        }
+    } catch (error) {
+        throw new Error(`Sql Connection is not working ${error}`);
+    }
 
-    return sqlConnection;
 }
 
 export async function createFirebaseConnection(firebaseDatabaseConfiguration: firebaseDatabaseConfiguration) {
@@ -24,7 +30,7 @@ export async function createFirebaseConnection(firebaseDatabaseConfiguration: fi
 
     try {
         if (initializeConnection) {
-            console.log("Firebase connection is up");
+            return console.log("Firebase connection is up");
         }
     } catch (error) {
         throw new Error(`Firebase Connection is not working ${error}`);
