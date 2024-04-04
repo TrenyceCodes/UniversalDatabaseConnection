@@ -14,13 +14,9 @@ export async function createSqlConnection(mysqlConnection: mySqlDatabaseConfigur
         database: mysqlConnection.databaseName
     });
 
-    try {
-        return await sqlConnection.connect(() => {
-            console.log("Sql Database Connected");
-        });
-    } catch (error) {
-        throw new Error("Sql database connection error" + error);
-    }
+    await sqlConnection.connect();
+
+    return sqlConnection;
 }
 
 export async function createFirebaseConnection(firebaseDatabaseConfiguration: firebaseDatabaseConfiguration) {
