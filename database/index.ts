@@ -25,7 +25,7 @@ const databaseConfiguration: mySqlDatabaseConfiguration = {
 async function initializeConnection(supportedDatabase: SupportedDatabases, databaseConfiguration: DatabaseConnectionType) {
     try {
         const connection = await UniversalDatabaseConnection(supportedDatabase, databaseConfiguration);
-        connection.query('SELECT medicineName FROM Medicines', (error: any, results: any) => {
+        connection.query("INSERT INTO medicines (medicineName, dosage, medicineType, createdAt, updatedAt) VALUES ('Tylenol', '2mg', 'Tablet', '2024-04-4 05:18:31', '2024-04-4 05:18:31')", (error: any, results: any) => {
             if (error) {
                 console.error("Error in query sql command", error);
                 return;
