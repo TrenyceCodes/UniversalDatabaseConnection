@@ -1,4 +1,3 @@
-import { log } from "console";
 import { SupportedDatabases, firebaseDatabaseConfiguration, mySqlDatabaseConfiguration } from "./data-access/configurations/database-configurations"
 import { createFirebaseConnection, createSqlConnection } from "./data-access/connections/database-connections";
 
@@ -25,7 +24,13 @@ const databaseConfiguration: mySqlDatabaseConfiguration = {
 async function initializeConnection(supportedDatabase: SupportedDatabases, databaseConfiguration: DatabaseConnectionType) {
     try {
         const sqlConnection = await UniversalDatabaseConnection(supportedDatabase, databaseConfiguration);
-        return sqlConnection;
+        sqlConnection.query('SELECT * FROM Medicines', (error: any, results: any) => {
+            if (error) {
+                console.error("There was an issue in querying database: ", error);
+                return;
+            }
+            return results;
+        });
     } catch (error) {
         console.error("Error connecting to the database:", error);
     }
